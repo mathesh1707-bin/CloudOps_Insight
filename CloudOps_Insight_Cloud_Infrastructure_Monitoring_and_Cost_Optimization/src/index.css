@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* ── Custom theme tokens ── */
+@theme {
+  --color-gray-950: #0a0f1a;
+  --color-gray-900: #0f1626;
+  --color-gray-850: #141d2e;
+  --color-gray-800: #1a2540;
+  --color-gray-750: #1e2d4a;
+  --color-gray-700: #243354;
+  --color-gray-600: #334466;
+  --color-gray-500: #4a5e80;
+  --color-gray-400: #6b829e;
+  --color-gray-300: #8fa3bc;
+  --color-gray-200: #b8c9d9;
+  --color-gray-100: #dce6ef;
+  --color-gray-50:  #f0f4f8;
+
+  --color-brand-500: #3b82f6;
+  --color-brand-400: #60a5fa;
+  --color-brand-600: #2563eb;
+
+  --color-success-500: #22c55e;
+  --color-success-400: #4ade80;
+  --color-warning-500: #f59e0b;
+  --color-warning-400: #fbbf24;
+  --color-danger-500:  #ef4444;
+  --color-danger-400:  #f87171;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-gray-950);
+  color: var(--color-gray-100);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gray-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-700);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-600);
+}
+
+/* ── Monospace metric numbers ── */
+.font-metric {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Recharts overrides ── */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+.recharts-default-tooltip {
+  background: var(--color-gray-800) !important;
+  border: 1px solid var(--color-gray-700) !important;
+  border-radius: 8px !important;
+}
+.recharts-tooltip-label {
+  color: var(--color-gray-200) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+}
+.recharts-tooltip-item {
+  color: var(--color-gray-100) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+}
+.recharts-legend-item-text {
+  color: var(--color-gray-300) !important;
+  font-size: 12px !important;
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-800) 25%,
+    var(--color-gray-700) 50%,
+    var(--color-gray-800) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* ── Status badge helpers ── */
+.status-healthy  { color: var(--color-success-400); }
+.status-warning  { color: var(--color-warning-400); }
+.status-critical { color: var(--color-danger-400);  }
+.status-stopped  { color: var(--color-gray-400);    }
+
+/* ── Card base ── */
+.card {
+  background: var(--color-gray-900);
+  border: 1px solid var(--color-gray-800);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ── Transition defaults ── */
+.transition-default {
+  transition: all 0.15s ease;
+}
