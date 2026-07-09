@@ -1,16 +1,19 @@
 type Severity = 'low' | 'medium' | 'high' | 'critical';
 
-const CONFIG: Record<Severity, { text: string; bg: string; border: string }> = {
-  low:      { text: 'text-slate-400',  bg: 'bg-slate-400/10',  border: 'border-slate-400/20'  },
-  medium:   { text: 'text-amber-400',  bg: 'bg-amber-400/10',  border: 'border-amber-400/20'  },
-  high:     { text: 'text-orange-400', bg: 'bg-orange-400/10', border: 'border-orange-400/20' },
-  critical: { text: 'text-red-400',    bg: 'bg-red-400/10',    border: 'border-red-400/20'    },
+const STYLES: Record<Severity, { color: string; bg: string; border: string }> = {
+  low:      { color: 'var(--text-tertiary)',   bg: 'var(--status-neutral-bg)',   border: 'var(--status-neutral-border)'   },
+  medium:   { color: 'var(--status-warning)',  bg: 'var(--status-warning-bg)',   border: 'var(--status-warning-border)'   },
+  high:     { color: 'var(--status-warning)',  bg: 'var(--status-warning-bg)',   border: 'var(--status-warning-border)'   },
+  critical: { color: 'var(--status-critical)', bg: 'var(--status-critical-bg)',  border: 'var(--status-critical-border)'  },
 };
 
 export default function SeverityBadge({ severity }: { severity: Severity }) {
-  const c = CONFIG[severity];
+  const s = STYLES[severity];
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border capitalize ${c.bg} ${c.text} ${c.border}`}>
+    <span
+      className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border capitalize"
+      style={{ color: s.color, background: s.bg, borderColor: s.border }}
+    >
       {severity}
     </span>
   );

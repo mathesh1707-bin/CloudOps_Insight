@@ -5,20 +5,27 @@ interface BadgeProps {
   className?: string;
 }
 
-const CONFIG: Record<ResourceStatus, { label: string; dot: string; text: string; bg: string; border: string }> = {
-  running:    { label: 'Running',    dot: 'bg-emerald-400', text: 'text-emerald-400', bg: 'bg-emerald-400/10', border: 'border-emerald-400/20' },
-  stopped:    { label: 'Stopped',    dot: 'bg-slate-400',   text: 'text-slate-400',   bg: 'bg-slate-400/10',   border: 'border-slate-400/20'   },
-  terminated: { label: 'Terminated', dot: 'bg-slate-600',   text: 'text-slate-500',   bg: 'bg-slate-600/10',   border: 'border-slate-600/20'   },
-  warning:    { label: 'Warning',    dot: 'bg-amber-400',   text: 'text-amber-400',   bg: 'bg-amber-400/10',   border: 'border-amber-400/20'   },
-  critical:   { label: 'Critical',   dot: 'bg-red-400',     text: 'text-red-400',     bg: 'bg-red-400/10',     border: 'border-red-400/20'     },
-};
-
 export default function StatusBadge({ status, className = '' }: BadgeProps) {
-  const c = CONFIG[status];
+  const styles: Record<ResourceStatus, { label: string; color: string; bg: string; border: string; pulse: boolean }> = {
+    running:    { label: 'Running',    color: 'var(--status-success)',  bg: 'var(--status-success-bg)',  border: 'var(--status-success-border)',  pulse: true  },
+    stopped:    { label: 'Stopped',    color: 'var(--status-neutral)',  bg: 'var(--status-neutral-bg)',  border: 'var(--status-neutral-border)',  pulse: false },
+    terminated: { label: 'Terminated', color: 'var(--text-tertiary)',   bg: 'var(--status-neutral-bg)',  border: 'var(--status-neutral-border)',  pulse: false },
+    warning:    { label: 'Warning',    color: 'var(--status-warning)',  bg: 'var(--status-warning-bg)',  border: 'var(--status-warning-border)',  pulse: true  },
+    critical:   { label: 'Critical',   color: 'var(--status-critical)', bg: 'var(--status-critical-bg)', border: 'var(--status-critical-border)', pulse: true  },
+  };
+
+  const s = styles[status];
+
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium border ${c.bg} ${c.text} ${c.border} ${className}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${c.dot} ${status === 'running' ? 'animate-pulse' : ''}`} />
-      {c.label}
+    <span
+      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium border ${className}`}
+      style={{ color: s.color, background: s.bg, borderColor: s.border }}
+    >
+      <span
+        className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${s.pulse ? 'animate-pulse' : ''}`}
+        style={{ backgroundColor: s.color }}
+      />
+      {s.label}
     </span>
   );
 }

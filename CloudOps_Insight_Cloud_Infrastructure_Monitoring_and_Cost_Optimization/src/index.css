@@ -1,40 +1,114 @@
 @import "tailwindcss";
 
-/* ── Custom theme tokens ── */
-@theme {
-  --color-gray-950: #0a0f1a;
-  --color-gray-900: #0f1626;
-  --color-gray-850: #141d2e;
-  --color-gray-800: #1a2540;
-  --color-gray-750: #1e2d4a;
-  --color-gray-700: #243354;
-  --color-gray-600: #334466;
-  --color-gray-500: #4a5e80;
-  --color-gray-400: #6b829e;
-  --color-gray-300: #8fa3bc;
-  --color-gray-200: #b8c9d9;
-  --color-gray-100: #dce6ef;
-  --color-gray-50:  #f0f4f8;
+/* ─────────────────────────────────────────────
+   LIGHT THEME  (default)
+───────────────────────────────────────────── */
+:root,
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg-base:         #F2F1EF;
+  --bg-panel:        #FFFFFF;
+  --bg-panel-hover:  #F5F4F2;
 
-  --color-brand-500: #3b82f6;
-  --color-brand-400: #60a5fa;
-  --color-brand-600: #2563eb;
+  /* Borders */
+  --border-hairline: #D6D4D1;
 
-  --color-success-500: #22c55e;
-  --color-success-400: #4ade80;
-  --color-warning-500: #f59e0b;
-  --color-warning-400: #fbbf24;
-  --color-danger-500:  #ef4444;
-  --color-danger-400:  #f87171;
+  /* Text */
+  --text-primary:    #262626;
+  --text-secondary:  #6B6B6B;
+  --text-tertiary:   #9A9A9A;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Accent (primary action / focus) */
+  --accent-red:          #D32F2F;
+  --accent-red-tint:     rgba(211, 47, 47, 0.12);
+  --accent-red-border:   rgba(211, 47, 47, 0.30);
+
+  /* Status — success */
+  --status-success:     #1B7A4A;
+  --status-success-bg:  rgba(27, 122, 74, 0.10);
+  --status-success-border: rgba(27, 122, 74, 0.25);
+
+  /* Status — warning */
+  --status-warning:     #B45309;
+  --status-warning-bg:  rgba(180, 83, 9, 0.10);
+  --status-warning-border: rgba(180, 83, 9, 0.25);
+
+  /* Status — critical / stopped */
+  --status-critical:    #C62828;
+  --status-critical-bg: rgba(198, 40, 40, 0.10);
+  --status-critical-border: rgba(198, 40, 40, 0.25);
+
+  --status-neutral:     #6B6B6B;
+  --status-neutral-bg:  rgba(107, 107, 107, 0.10);
+  --status-neutral-border: rgba(107, 107, 107, 0.20);
+
+  /* Metric / chart series */
+  --series-a:  #1565C0;   /* primary data line  */
+  --series-b:  #5B6FD6;   /* secondary data line */
+  --series-c:  #1B7A4A;   /* tertiary / network  */
+  --series-d:  #B45309;   /* quaternary / disk   */
+
+  /* Skeleton shimmer */
+  --skeleton-from: #E8E6E3;
+  --skeleton-mid:  #D6D4D1;
 }
 
-/* ── Base ── */
-*, *::before, *::after {
-  box-sizing: border-box;
+/* ─────────────────────────────────────────────
+   DARK THEME
+───────────────────────────────────────────── */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-base:         #0D0F12;
+  --bg-panel:        #15181C;
+  --bg-panel-hover:  #1B1F24;
+
+  /* Borders */
+  --border-hairline: #262B31;
+
+  /* Text */
+  --text-primary:    #EDEBE6;
+  --text-secondary:  #8A9199;
+  --text-tertiary:   #5C636B;
+
+  /* Accent */
+  --accent-red:          #EF5350;
+  --accent-red-tint:     rgba(239, 83, 80, 0.12);
+  --accent-red-border:   rgba(239, 83, 80, 0.30);
+
+  /* Status — success */
+  --status-success:     #3ED6C4;
+  --status-success-bg:  rgba(62, 214, 196, 0.10);
+  --status-success-border: rgba(62, 214, 196, 0.25);
+
+  /* Status — warning */
+  --status-warning:     #E8873A;
+  --status-warning-bg:  rgba(232, 135, 58, 0.10);
+  --status-warning-border: rgba(232, 135, 58, 0.25);
+
+  /* Status — critical */
+  --status-critical:    #E85D5D;
+  --status-critical-bg: rgba(232, 93, 93, 0.10);
+  --status-critical-border: rgba(232, 93, 93, 0.25);
+
+  --status-neutral:     #5C636B;
+  --status-neutral-bg:  rgba(92, 99, 107, 0.10);
+  --status-neutral-border: rgba(92, 99, 107, 0.20);
+
+  /* Metric / chart series */
+  --series-a:  #60A5FA;
+  --series-b:  #A78BFA;
+  --series-c:  #34D399;
+  --series-d:  #F59E0B;
+
+  /* Skeleton shimmer */
+  --skeleton-from: #1B1F24;
+  --skeleton-mid:  #262B31;
 }
+
+/* ─────────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body, #root {
   height: 100%;
@@ -43,62 +117,55 @@ html, body, #root {
 }
 
 body {
-  background-color: var(--color-gray-950);
-  color: var(--color-gray-100);
-  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-gray-900);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-gray-700);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gray-600);
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg-base); }
+::-webkit-scrollbar-thumb  { background: var(--border-hairline); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ─────────────────────────────────────────────
+   FOCUS RING  (keyboard nav — all interactive)
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-red);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* ── Monospace metric numbers ── */
+/* ─────────────────────────────────────────────
+   MONOSPACE METRIC NUMBERS
+───────────────────────────────────────────── */
 .font-metric {
-  font-family: var(--font-mono);
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
   font-variant-numeric: tabular-nums;
 }
 
-/* ── Recharts overrides ── */
-.recharts-tooltip-wrapper {
-  outline: none !important;
-}
-.recharts-default-tooltip {
-  background: var(--color-gray-800) !important;
-  border: 1px solid var(--color-gray-700) !important;
-  border-radius: 8px !important;
-}
-.recharts-tooltip-label {
-  color: var(--color-gray-200) !important;
-  font-family: var(--font-sans) !important;
-  font-size: 12px !important;
-}
-.recharts-tooltip-item {
-  color: var(--color-gray-100) !important;
-  font-family: var(--font-sans) !important;
-  font-size: 12px !important;
-}
-.recharts-legend-item-text {
-  color: var(--color-gray-300) !important;
-  font-size: 12px !important;
+/* ─────────────────────────────────────────────
+   CARD BASE
+───────────────────────────────────────────── */
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-hairline);
+  border-radius: 8px;
+  padding: 20px;
+  transition: background-color 250ms ease, border-color 250ms ease;
 }
 
-/* ── Skeleton shimmer ── */
+/* ─────────────────────────────────────────────
+   SKELETON SHIMMER
+───────────────────────────────────────────── */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
@@ -106,30 +173,47 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--color-gray-800) 25%,
-    var(--color-gray-700) 50%,
-    var(--color-gray-800) 75%
+    var(--skeleton-from) 25%,
+    var(--skeleton-mid)  50%,
+    var(--skeleton-from) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 4px;
 }
-
-/* ── Status badge helpers ── */
-.status-healthy  { color: var(--color-success-400); }
-.status-warning  { color: var(--color-warning-400); }
-.status-critical { color: var(--color-danger-400);  }
-.status-stopped  { color: var(--color-gray-400);    }
-
-/* ── Card base ── */
-.card {
-  background: var(--color-gray-900);
-  border: 1px solid var(--color-gray-800);
-  border-radius: 12px;
-  padding: 20px;
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; background: var(--skeleton-from); }
 }
 
-/* ── Transition defaults ── */
-.transition-default {
-  transition: all 0.15s ease;
+/* ─────────────────────────────────────────────
+   RECHARTS OVERRIDES  (global tooltip base)
+───────────────────────────────────────────── */
+.recharts-tooltip-wrapper { outline: none !important; }
+
+/* ─────────────────────────────────────────────
+   ANOMALY PULSE GLOW  (scoped — only .anomaly-dot)
+───────────────────────────────────────────── */
+@keyframes anomaly-glow {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 0px var(--status-critical)); }
+  50%       { opacity: 0.7; filter: drop-shadow(0 0 6px var(--status-critical)); }
+}
+.anomaly-dot {
+  animation: anomaly-glow 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .anomaly-dot { animation: none; }
+}
+
+/* ─────────────────────────────────────────────
+   SIDEBAR HEALTH DOT PULSE  (scoped)
+───────────────────────────────────────────── */
+@keyframes health-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.health-dot-pulse {
+  animation: health-pulse 3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .health-dot-pulse { animation: none; }
 }
