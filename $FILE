@@ -1,1 +1,0 @@
-0); echo $((COUNT + 1)) ; echo ok'
